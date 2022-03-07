@@ -28,7 +28,7 @@ const SignInContext = ({ children }: React.PropsWithChildren<{}>) => {
   const [userData,setUserData] = useState({})
   const navigate = useNavigate()
   const {state} = useLocation()
-
+  console.log(token)
   const LogIn = async (e:any,email:any,password:any,setUserInfo:any) => {
     try {
       e.preventDefault();
