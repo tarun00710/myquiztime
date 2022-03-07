@@ -34,8 +34,8 @@ const QuizGame = () => {
     setHighlight(false);
     setColor([...defaultColors]);
     if (e.target.name === "next") {
-      if (questionNo < totalQuestion - 1) {
-        if (questionNo === totalQuestion - 2) {
+      if (questionNo < totalQuestion ) {
+        if (questionNo === totalQuestion - 1) {
           setdisable({
             next: true,
           });
@@ -115,7 +115,7 @@ const QuizGame = () => {
           >
             Next
           </button>
-          {questionNo === 4 ? (
+          {questionNo === 5 ? (
             <button
               name="next"
               onClick={() => {
