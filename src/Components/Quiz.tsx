@@ -1,79 +1,138 @@
-import React,{useContext, useState} from 'react'
-import {useParams} from 'react-router-dom'
-import {DataContext} from "../Context/DataProvider"
-import { Quizzes, Quiz , Options } from '../data';
-
+import React, { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { DataContext } from "../Context/DataProvider";
+import { ScoreContext } from "../Context/ScoreCon";
+import { userSignInContext } from "../Context/SignInContext";
+import { Quizzes, Quiz, Options } from "../Context/QuizDataContext";
+import { updateScore } from "../Predisptach/Predispatch";
 
 const QuizGame = () => {
+  const quizzes = useContext(DataContext);
+  const { quizResponse, dispatch} = useContext(ScoreContext);
+  const {userData} = useContext(userSignInContext)
+  const { topic } = useParams();
+  const { questionNo, totalQuestion, score } = quizResponse;
+  const [highlight, setHighlight] = useState(false);
+  const [disable, setdisable] = useState({
+    next: false,
+  });
+  const navigate = useNavigate();
 
-    const {quizzes} = useContext(DataContext)
-    const {topic} = useParams();
-    const [question,setQuestion] = useState(0);
-    const [disable,setdisable] = useState({
-        next: false,
-        prev: false
-    })
-   
+  const defaultColors = [
+    "bg-gray-light",
+    "bg-gray-light",
+    "bg-gray-light",
+    "bg-gray-light",
+  ];
+  const [color, setColor] = useState(defaultColors);
 
-    const quizData:Quiz = quizzes.filter((ele:Quizzes) => {
-        return ele.topic === topic
-    })
-   
-    const questionHandler = (e:any) => {
-        console.log(e.target.className)
-        if(e.target.name === "next"){
-            if(question < 4){
-            setQuestion(question + 1)
-             }else{
-            setdisable({
-                next: true,
-                prev: false
-            })
-            }
-        }else{
-            if(question > 0)
-                setQuestion(question-1)
-            else
-            setdisable({
-                next: false,
-                prev: true
-            })
-        }    
-    }
+  const quizData: Quiz = quizzes.filter((ele: Quizzes) => {
+    return ele.topic === topic;
+  });
 
-    const optionHandler = (e:any,option:Options) => {
-        if(option.isRight === false){
-            e.target.classList.add("bg-red")
+  const questionHandler = (e: any) => {
+    setHighlight(false);
+    setColor([...defaultColors]);
+    if (e.target.name === "next") {
+      if (questionNo < totalQuestion - 1) {
+        if (questionNo === totalQuestion - 2) {
+          setdisable({
+            next: true,
+          });
         }
+       
+        dispatch({ type: "INCREMENT_QUESTION" });
+      }
     }
+  };
 
-    return (
-        <div className="flex flex-col justify-center items-center h-full mt-10">
-            <div className ="text-white m-3">
-                {
-                    quizData[0].questions[question].question
-                }
-            </div>
-            <div className ="flex flex-col w-1/2">
-                {
-                    quizData[0].questions[question].options.map((option) =>
-                    <>
-                        <ul>
-                            <li><button
-                            onClick={(e)=>optionHandler(e,option)} className="bg-gray-light text-white min-w-full mt-3 rounded-md">{option.option}</button></li>
-                        </ul>
-                    </>
-                    )
-                }
-            </div>
-            <div className="flex flex-row justify-between w-1/2 items-center">
-                <button name="prev" disabled={disable.prev} onClick={(e)=> questionHandler(e)} className="btn bg-orange text-white px-4 py-2 font-bold bg disabled:opacity-50 rounded-2xl mt-3 ml-2">Prev</button>
-                <h2 className="text-orange">Score :</h2>
-                <button name="next" disabled={disable.next} onClick={(e) => questionHandler(e)} className="btn bg-orange text-white px-4 py-2 font-bold bg disabled:opacity-50 rounded-2xl mt-3 mr-2">Next</button>
-            </div>
-        </div>    
-    )
-}
+  const optionHandler = async (
+    e: any,
+    option: Options,
+    i: any,
+    pts: any,
+    options: Options[],
+    negativePts: number
+  ) => {
+    setHighlight(true);
+    if (option.isRight === true) {
+      setColor((color) => {
+        color[i] = "bg-green";
+        return [...color];
+      });
+      dispatch({ type: "CORRECT", payload: pts });
+    } else {
+      let rightIndex: any;
+      options.map((opt, i) => {
+        if (opt.isRight === true) rightIndex = i;
+        return opt;
+      });
+      dispatch({ type: "INCORRECT", payload: negativePts });
+      setColor((color) => {
+        color[i] = "bg-red";
+        color[rightIndex] = "bg-green";
+        return [...color];
+      });
+    }
+  };
 
-export default QuizGame
- 
+  const AllQues = quizData[0]?.questions;
+  
+  const { question, negativePts, options, pts } = AllQues[questionNo-1];
+
+  return (
+    <div
+      className={`bg-${quizData[0]._id} bg-fixed bg-center bg-cover bg-no-repeat h-screen bg-opacity-50"`}
+    >
+      <h2 className="text-orange font-bold ml-2.5 "> Score : {score}</h2>
+      <div className="flex flex-col justify-center items-center h-full">
+        <div className="text-white bg-blend-overlay text-xl font-bold bg-orange bg-opacity-50 rounded-xl p-1.5">{question}</div>
+        <div className="flex flex-col w-1/2">
+          {options.map((option, i) => (
+            <>
+              <ul>
+                <li>
+                  <button
+                    disabled={highlight}
+                    onClick={(e) =>
+                      optionHandler(e, option, i, pts, options, negativePts)
+                    }
+                    className={`text-white p-3 min-w-full mt-3 rounded-md ${color[i]}`}
+                  >
+                    {option.option}
+                  </button>
+                </li>
+              </ul>
+            </>
+          ))}
+        </div>
+        <div className="flex flex-row justify-between w-1/2 items-center">
+          <button
+            name="next"
+            disabled={disable.next}
+            onClick={(e) => questionHandler(e)}
+            className="btn bg-orange text-white px-4 py-2 font-bold bg disabled:opacity-50 rounded-2xl mt-3 mr-2"
+          >
+            Next
+          </button>
+          {questionNo === 4 ? (
+            <button
+              name="next"
+              onClick={() => {
+                updateScore(score,topic,userData,dispatch)
+                navigate("/quizEnd")
+              }}
+              className="btn bg-orange text-white px-4 py-2 font-bold bg disabled:opacity-50 rounded-2xl mt-3 mr-2"
+            >
+              Finish
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QuizGame;
