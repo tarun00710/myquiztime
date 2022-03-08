@@ -1,6 +1,6 @@
 import "./App.css";
 import { Home } from "./Components/Home";
-import {  Routes, Route } from "react-router-dom";
+import {  Routes, Route, useParams } from "react-router-dom";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Nav from "./Components/Nav";
@@ -31,6 +31,7 @@ const App = () => {
      reload()
   },[])
 
+  
   return (
       <>
         <Nav />
@@ -40,7 +41,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
             <PrivateRoute 
-              path="quiz/:topic"
+              path={`quiz/:topic`}
               element={<QuizGame/>}/>
              <PrivateRoute
               path="/User"

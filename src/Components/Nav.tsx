@@ -7,7 +7,7 @@ const Nav = () => {
   const { quizResponse } = useContext(ScoreContext);
   const { token, setToken } = useContext(userSignInContext);
 
-  const logoutHandler = () => {
+  const logoutHandler = async() => {
     setToken(null)
     localStorage.removeItem('token')
   };
@@ -29,7 +29,7 @@ const Nav = () => {
               Login
             </NavLink>
         </div> :   
-          <div onClick={() => logoutHandler()} className="text-red">
+          <div onClick={() => logoutHandler()} className="text-red cursor-pointer">
             Logout
           </div>
 }

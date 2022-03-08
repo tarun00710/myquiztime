@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navigate, Route} from "react-router-dom";
+import { Navigate, Route, useParams} from "react-router-dom";
 import { userSignInContext } from "../Context/SignInContext";
 
 type propsType = {
@@ -9,12 +9,14 @@ type propsType = {
 
 const PrivateRoute = (props: propsType) => {
   const { token } = useContext(userSignInContext);
-console.log(token)
+  const {topic} = useParams()
+  console.log(topic)
+// console.log(props.path)
   return (
     <>
-      {token ? <Route {...props} path={props.path} />
+      {token ? <Route {...props} path={`/`} />
      
-       : (
+       : ( 
         <Navigate state={{ from: props.path }} replace to="/Login" />
       )}
     </>

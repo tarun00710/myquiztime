@@ -2,6 +2,7 @@ import { useContext, createContext } from "react";
 
 export type Quizzes = {
   _id: string;
+  q_id:string;
   topic: string;
   image: string;
   bg: string;
@@ -22,6 +23,7 @@ export type Options = {
 
 export const initialQuizContext= [{
   _id: "",
+  q_id: "",
   topic: "",
   image: "",
   bg: "",

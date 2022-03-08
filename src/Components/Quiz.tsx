@@ -79,10 +79,10 @@ const QuizGame = () => {
   const AllQues = quizData[0]?.questions;
   
   const { question, negativePts, options, pts } = AllQues[questionNo-1];
-
+  console.log(quizData[0].q_id)
   return (
     <div
-      className={`bg-${quizData[0]._id} bg-fixed bg-center bg-cover bg-no-repeat h-screen bg-opacity-50"`}
+      className={`bg-${quizData[0].q_id} bg-fixed bg-center bg-cover bg-no-repeat h-screen bg-opacity-50"`}
     >
       <h2 className="text-orange font-bold ml-2.5 "> Score : {score}</h2>
       <div className="flex flex-col justify-center items-center h-full">
