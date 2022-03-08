@@ -1,6 +1,6 @@
 import "./App.css";
 import { Home } from "./Components/Home";
-import {  Routes, Route, useParams } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import Nav from "./Components/Nav";
@@ -29,7 +29,7 @@ const App = () => {
      }
      if(localStorage.getItem('token'))
      reload()
-  },[])
+  })
 
   
   return (
