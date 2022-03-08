@@ -30,7 +30,7 @@ const App = () => {
      }
      if(localStorage.getItem('token'))
      reload()
-  },[])
+  })
 
   
   return (

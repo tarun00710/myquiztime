@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../Context/DataProvider";
 import { ScoreContext } from "../Context/ScoreCon";
 import { userSignInContext } from "../Context/SignInContext";
-import { Quizzes, Quiz, Options } from "../Context/QuizDataContext";
+import { Quizzes, Options } from "../Context/QuizDataContext";
 import { updateScore } from "../Predisptach/Predispatch";
 
 const QuizGame = () => {
