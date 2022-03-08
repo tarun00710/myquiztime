@@ -51,7 +51,6 @@ const scoreReducer = (state:typeof reducerInitialState ,action:Action) => {
   case "RESET":
     return {...state,questionNo:1,score:0,correct:0,incorrect:0}  
   case "USERINFO":{
-    console.log(action.payload,"hello")
     return {...state,userData:{
       ...state.userData,
       name:action.payload.name,

@@ -7,7 +7,6 @@ import { ScoreContext } from "../Context/ScoreCon";
 const Home = () => {
   const quizzes = useContext(DataContext);
   const { dispatch} = useContext(ScoreContext);
-  console.log(quizzes);
   return (
     <>
       {!quizzes ? (
