@@ -1,4 +1,4 @@
-
+import React from "react";
 
 export type Quizzes = {
   _id: string;
@@ -8,8 +8,13 @@ export type Quizzes = {
   bg: string;
   questions: Question[];
 };
-export type Quiz = Quizzes[];
+// export type Quiz = Quizzes[];
 
+export type Quiz = {
+  quiz : Quizzes[],
+  setQuizes :  React.Dispatch<React.SetStateAction<{ _id: string; q_id: string; topic: string; image: string; bg: string; questions: { question: string; pts: number; negativePts: number; options: { option: string; isRight: boolean; }[]; }[]; }[]>>;
+}
+//Dispatch<SetStateAction<Quiz | undefined>>
 type Question = {
   question: string;
   pts: number;
@@ -21,7 +26,8 @@ export type Options = {
   isRight: boolean;
 };
 
-export const initialQuizContext= [{
+export const initialQuizContext={ 
+  quiz :[{
   _id: "",
   q_id: "",
   topic: "",
@@ -39,8 +45,10 @@ export const initialQuizContext= [{
               }
           ]
       }
-  ],
-}];
+  ]
+}],
+setQuizes:() => null
+};
 
 // export const QuizContext = createContext<Quizzes>(initialQuizContext);
 

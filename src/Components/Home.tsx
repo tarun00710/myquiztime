@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import { ScoreContext } from "../Context/ScoreCon";
 
 const Home = () => {
-  const quizzes = useContext(DataContext);
+  const {quiz} = useContext(DataContext);
   const { dispatch} = useContext(ScoreContext);
   return (
     <>
-      {!quizzes ? (
+      {!quiz ? (
         <div className="text-orange">loading</div>
       ) : (
-        quizzes?.map((ele: Quizzes, i: number) => {
+        quiz?.map((ele: Quizzes, i: number) => {
           return (
             <div key={i} className="pt-6 ">
               <div className="max-w-sm mx-auto bg-gray-light rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-2">
@@ -26,7 +26,7 @@ const Home = () => {
                   </div>
                   <div className="p-8">
                     <div className="uppercase tracking-wide text-sm text-white font-semibold">
-                      {ele.topic}
+                      {ele.topic} 
                     </div>
                     <a
                       href="#i"

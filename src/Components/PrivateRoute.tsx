@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate, Route} from "react-router-dom";
 import { userSignInContext } from "../Context/SignInContext";
+import QuizGame from "./Quiz";
 
 type propsType = {
   path: any | string;
@@ -8,10 +9,10 @@ type propsType = {
 };
 
 const PrivateRoute = (props: propsType) => {
-  const { token } = useContext(userSignInContext);
+  const {token } = useContext(userSignInContext);
   return (
     <>
-      {token ? <Route {...props} path={`/`} />
+      {token ? <Route {...props} path={props.path}   />
      
        : ( 
         <Navigate state={{ from: props.path }} replace to="/Login" />

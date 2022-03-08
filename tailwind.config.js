@@ -7,7 +7,9 @@ module.exports = {
         "0001" : "url('/src/Assets/friends.jpeg')",
         "0002" : "url('/src/Assets/GOT.jpeg')",
         "0003" : "url('/src/Assets/JS.jpeg')",
-        "0004" : "url('/src/Assets/cricket.jpeg')"
+        "0004" : "url('/src/Assets/cricket.jpeg')",
+        "homeQuiz" : "url('/src/Assets/homeQuiz.jpg')",
+        "quizEnd" :  "url('/src/Assets/quizTrophy.png')",
       }
     },
     colors: {

@@ -11,6 +11,8 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { ScoreContext } from "./Context/ScoreCon";
 import QuizGame from "./Components/Quiz";
+import Homestart from "./Components/Homestart";
+// import QuizGame from "./Components/Quiz";
 
 const App = () => {
   const {dispatch} = useContext(ScoreContext)
@@ -28,7 +30,7 @@ const App = () => {
      }
      if(localStorage.getItem('token'))
      reload()
-  })
+  },[])
 
   
   return (
@@ -36,12 +38,15 @@ const App = () => {
         <Nav />
         <div className="bg-gray-darkest">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
-            <PrivateRoute 
-              path={`quiz/:topic`}
+            <Route 
+              path="Home/quiz/:topic"
               element={<QuizGame/>}/>
+               <Route
+              path="/"
+              element={<Homestart/>} />
              <PrivateRoute
               path="/User"
               element={<UserInfo/>} />

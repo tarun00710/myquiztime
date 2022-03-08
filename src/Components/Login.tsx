@@ -56,7 +56,7 @@ const Login = () => {
             name="password"
             type="password"
             value={userInfo.password}
-            placeholder="*********"
+            placeholder="*******"
           ></input>
         </div>
         <div className="flex items-center justify-between flex-col">

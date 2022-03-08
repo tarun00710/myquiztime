@@ -6,7 +6,7 @@ import {Quiz,initialQuizContext} from './QuizDataContext'
 export const DataContext = createContext<Quiz>(initialQuizContext);
 const DataContextProvider = ({children}: React.PropsWithChildren<{}>) =>{
 
-    const [quizzes,setQuizes] = useState(initialQuizContext)
+    const [quiz,setQuizes] = useState(initialQuizContext.quiz)
     useEffect(()=>{
         const getQuizData = async()=>{
         const quizeResponse = await axios.get('https://quiz-fun-app.herokuapp.com/quiz')
@@ -15,7 +15,7 @@ const DataContextProvider = ({children}: React.PropsWithChildren<{}>) =>{
         getQuizData()
     },[])
     return (
-        <DataContext.Provider value={quizzes} >
+        <DataContext.Provider value={{quiz,setQuizes}} >
             {children}
         </DataContext.Provider>
     )

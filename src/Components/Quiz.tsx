@@ -7,7 +7,7 @@ import { Quizzes, Quiz, Options } from "../Context/QuizDataContext";
 import { updateScore } from "../Predisptach/Predispatch";
 
 const QuizGame = () => {
-  const quizzes = useContext(DataContext);
+  const {quiz} = useContext(DataContext);
   const { quizResponse, dispatch} = useContext(ScoreContext);
   const {userData} = useContext(userSignInContext)
   const { topic } = useParams();
@@ -17,7 +17,7 @@ const QuizGame = () => {
     next: false,
   });
   const navigate = useNavigate();
-
+  console.log(userData)
   const defaultColors = [
     "bg-gray-light",
     "bg-gray-light",
@@ -26,7 +26,7 @@ const QuizGame = () => {
   ];
   const [color, setColor] = useState(defaultColors);
 
-  const quizData: Quiz = quizzes.filter((ele: Quizzes) => {
+  const quizData = quiz.filter((ele: Quizzes) => {
     return ele.topic === topic;
   });
 
@@ -79,8 +79,8 @@ const QuizGame = () => {
   const AllQues = quizData[0]?.questions;
   
   const { question, negativePts, options, pts } = AllQues[questionNo-1];
-  console.log(quizData[0].q_id)
-  return (
+
+  return ( 
     <div
       className={`bg-${quizData[0].q_id} bg-fixed bg-center bg-cover bg-no-repeat h-screen bg-opacity-50"`}
     >
@@ -119,7 +119,7 @@ const QuizGame = () => {
             <button
               name="next"
               onClick={() => {
-                updateScore(score,topic,userData,dispatch)
+                updateScore(score,topic,userData._id,dispatch)
                 navigate("/quizEnd")
               }}
               className="btn bg-orange text-white px-4 py-2 font-bold bg disabled:opacity-50 rounded-2xl mt-3 mr-2"

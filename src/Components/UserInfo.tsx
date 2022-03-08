@@ -4,7 +4,8 @@ import {ScoreContext} from '../Context/ScoreCon'
 const UserInfo = () => {
     const { quizResponse } = useContext(ScoreContext)
     const {name,score,topic} = quizResponse.userData;
-  return (
+  console.log(quizResponse)
+    return (
       <>
          <div className=' bg-white h-screen flex flex-col items-center justify-center'>
             <div className='text-xl'>Player Name : <span className='text-orange'>{name}</span></div>
