@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import DataContextProvider from "./Context/DataProvider";
@@ -9,7 +9,7 @@ import SignInContext from "./Context/SignInContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <DataContextProvider>
         <SignInContext>
           <ScoreContextProvider>
@@ -17,7 +17,7 @@ ReactDOM.render(
           </ScoreContextProvider>
         </SignInContext>
       </DataContextProvider>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

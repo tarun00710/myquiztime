@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Navigate, Route} from "react-router-dom";
 import { userSignInContext } from "../Context/SignInContext";
-import QuizGame from "./Quiz";
 
 type propsType = {
   path: any | string;

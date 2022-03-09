@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { Home } from "./Components/Home";
 import {  Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
@@ -22,7 +22,7 @@ const App = () => {
        try{
           const response = await axios.post('https://quiz-fun-app.herokuapp.com/user/userInfo',{ headers: { authorization:localStorage.getItem('token') }
         })
-        dispatch({ type: "USERINFO" , payload: response.data.userData})
+        dispatch({ type  : "USERINFO" , payload: response.data.userData})
        
        }catch(err){
          console.log(err)
