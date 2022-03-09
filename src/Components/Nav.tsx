@@ -7,7 +7,7 @@ const Nav = () => {
   const { quizResponse } = useContext(ScoreContext);
   const { token, setToken } = useContext(userSignInContext);
   const navigate =  useNavigate()
-  console.log(quizResponse)
+
   const logoutHandler = async () => {
     try{
       setToken(null)

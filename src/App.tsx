@@ -21,7 +21,8 @@ const App = () => {
        try{
           const response = await axios.post('https://quiz-fun-app.herokuapp.com/user/userInfo',{ headers: { authorization:localStorage.getItem('token') }
         })
-        dispatch({ type  : "USERINFO" , payload: response.data.userData})
+        if(response.status === 200)
+          dispatch({ type  : "USERINFO" , payload: response.data.userData})
        
        }catch(err){
          console.log(err)
