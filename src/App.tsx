@@ -12,7 +12,6 @@ import axios from "axios";
 import { ScoreContext } from "./Context/ScoreCon";
 import QuizGame from "./Components/Quiz";
 import Homestart from "./Components/Homestart";
-// import QuizGame from "./Components/Quiz";
 
 const App = () => {
   const {dispatch} = useContext(ScoreContext)

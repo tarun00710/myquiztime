@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { DataContext } from "../Context/DataProvider";
 import { Quizzes } from "../Context/QuizDataContext";
 import { Link } from "react-router-dom";
