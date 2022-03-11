@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [userInfo,setUserInfo] = useState({name:"",email:"",password:""})
@@ -23,9 +24,10 @@ const Signup = () => {
     const {name,email,password} = userInfo
     const response = await axios.post('http://localhost:5000/user/register',{name,email,password})
     if(response.status === 422)
-      alert('something went wrong')
+      toast.error('something went wrong')
     else{  
       navigate('/login')
+      toast("Successfully Signed up")
       setUserInfo({name:"",email:"",password:""})
     }
    } catch (error) {
@@ -34,11 +36,8 @@ const Signup = () => {
   } 
   
 
-
-
-
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen -mt-4">
       <form className="bg-gray-light shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         <div className="mb-4">
           <label className="block text-orange text-sm font-bold mb-2">

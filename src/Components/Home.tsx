@@ -3,6 +3,7 @@ import { DataContext } from "../Context/DataProvider";
 import { Quizzes } from "../Context/QuizDataContext";
 import { Link } from "react-router-dom";
 import { ScoreContext } from "../Context/ScoreCon";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const {quiz} = useContext(DataContext);
@@ -14,7 +15,7 @@ const Home = () => {
       ) : (
         quiz?.map((ele: Quizzes, i: number) => {
           return (
-            <div key={i} className="pt-6 ">
+            <div key={i} className="pt-8 -mt-4">
               <div className="max-w-sm mx-auto bg-gray-light rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-2">
                 <div className="md:flex">
                   <div className="md:flex-shrink-0">
@@ -40,6 +41,7 @@ const Home = () => {
                         className="btn bg-orange px-3 py-1.5 mt-1 text-white font-bold hover:bg-blue-600 rounded-md"
                         onClick={() => {
                           dispatch({ type: "RESET" });
+                          toast.success("Welcome")
                         }}
                       >
                         Play Now

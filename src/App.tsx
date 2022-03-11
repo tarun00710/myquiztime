@@ -12,6 +12,8 @@ import axios from "axios";
 import { ScoreContext } from "./Context/ScoreCon";
 import QuizGame from "./Components/Quiz";
 import Homestart from "./Components/Homestart";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const {dispatch} = useContext(ScoreContext)
@@ -37,6 +39,7 @@ const App = () => {
       <>
         <Nav />
         <div className="bg-gray-darkest">
+        <ToastContainer theme="dark" autoClose={2000} />
           <Routes>
             <Route path="/Home" element={<Home />} />
             <Route path="/login" element={<Login />} />

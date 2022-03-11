@@ -1,5 +1,6 @@
 import  { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { ScoreContext } from "../Context/ScoreCon";
 import { userSignInContext } from "../Context/SignInContext";
 
@@ -13,15 +14,16 @@ const Nav = () => {
     setToken(null)
     localStorage.removeItem('token')
     navigate('/')
+    toast.success("Successfully logged out")
     }catch(err){
       console.log(err)
     }
   };
-  
+
   return (
-    <nav className="flex justify-between sticky px-2 py-2 top-0 z-10 bg-wzhite-dark backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200">
+    <nav className="flex justify-between sticky px-2 py-2 top-0 z-10 bg-black backdrop-filter backdrop-blur-lg bg-opacity-40 border border-gray-200">
       <div className="">
-        <NavLink to={"/"} className="text-gray-dark font-bold">
+        <NavLink to={"/"} className="text-white font-bold">
           Home
         </NavLink>
       </div>

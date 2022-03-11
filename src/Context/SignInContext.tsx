@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const initialContext = {
     token: "",
@@ -42,6 +43,7 @@ const SignInContext = ({ children }: React.PropsWithChildren<{}>) => {
         
         localStorage.setItem("token",response.data.token)
         // navigate(state?.from ? state.from : "/" )
+        toast.success(`welcome ${response.data.userExist.name}`)
         navigate("/Home")
       }
       if(response.status === 422 || !userData){

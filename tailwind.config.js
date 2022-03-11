@@ -9,6 +9,8 @@ module.exports = {
         "0004" : "url('/src/Assets/cricket.jpeg')",
         "homeQuiz" : "url('/src/Assets/homeQuiz.jpg')",
         "quizEnd" :  "url('/src/Assets/quizTrophy.png')",
+        "quizEndBg" : "url(/src/Assets/quizend.jpg)",
+        "quizNight" : "url(/src/Assets/quiz-night.jpg)"
       }
     },
     colors: {
@@ -30,6 +32,9 @@ module.exports = {
       },
       red:{
         DEFAULT: '#EF4444'
+      },
+      black:{
+        DEFAULT: '#000000'
       }
     }
   },

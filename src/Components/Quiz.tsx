@@ -5,6 +5,7 @@ import { ScoreContext } from "../Context/ScoreCon";
 import { userSignInContext } from "../Context/SignInContext";
 import { Quizzes, Options } from "../Context/QuizDataContext";
 import { updateScore } from "../Predisptach/Predispatch";
+import Particles from "react-tsparticles";
 
 const QuizGame = () => {
   const {quiz} = useContext(DataContext);
@@ -17,7 +18,15 @@ const QuizGame = () => {
     next: false,
   });
   const navigate = useNavigate();
-  console.log(userData)
+  // const particlesInit:any = (main:any) => {
+  //   console.log(main);
+
+  //   // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+  // };
+  // const particlesLoaded:any = (container: any) => {
+  //   console.log(container);
+  // };
+
   const defaultColors = [
     "bg-gray-light",
     "bg-gray-light",
@@ -84,6 +93,84 @@ const QuizGame = () => {
     <div
       className={`bg-${bg_id} bg-fixed bg-center bg-cover bg-no-repeat h-screen bg-opacity-50"`}
     >
+      {/* <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        fpsLimit: 60,
+        interactivity: {
+          detect_on:"canvas",
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 8,
+              opacity: 0.8,
+              size: 40,
+            },
+            push: {
+              quantity: 4,
+            },
+            repulse: {
+              distance: 200,
+              duration: 4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            color: "#ffffff",
+            distance: 200,
+            enable: true,
+            opacity: 0.2,
+            width: 1,
+          },
+          collisions: {
+            enable: true,
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outMode: "bounce",
+            random: false,
+            speed: 1,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 1080,
+            },
+            value: 50,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            random: true,
+            value: 5,
+          },
+        },
+        detectRetina: true,
+      }}
+    /> */}
       <h2 className="text-orange font-bold ml-2.5 "> Score : {score}</h2>
       <div className="flex flex-col justify-center items-center h-full">
         <div className="text-white bg-blend-overlay text-xl font-bold bg-orange bg-opacity-50 rounded-xl p-1.5">{question}</div>

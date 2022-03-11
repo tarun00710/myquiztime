@@ -7,7 +7,7 @@ const QuizEnd = () => {
     const {userData} = useContext(userSignInContext)
     console.log(userData)
   return (
-    <div className='flex flex-col justify-center items-center h-screen -mt-6'>
+    <div className='flex flex-col justify-center items-center h-screen -mt-6 '>
     <div className='flex flex-col'>
         <h1 className="text-xl bg-white-dark rounded">Hi ! {userData.name}</h1>
         <p className='text-white mt-2'>Your total Score - {quizResponse.score} </p>
