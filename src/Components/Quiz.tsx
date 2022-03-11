@@ -5,7 +5,7 @@ import { ScoreContext } from "../Context/ScoreCon";
 import { userSignInContext } from "../Context/SignInContext";
 import { Quizzes, Options } from "../Context/QuizDataContext";
 import { updateScore } from "../Predisptach/Predispatch";
-import Particles from "react-tsparticles";
+
 
 const QuizGame = () => {
   const {quiz} = useContext(DataContext);
@@ -115,7 +115,7 @@ const QuizGame = () => {
           modes: {
             bubble: {
               distance: 400,
-              duration: 8,
+              duration: 0.4,
               opacity: 0.8,
               size: 40,
             },
