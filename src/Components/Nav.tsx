@@ -10,16 +10,16 @@ const Nav = () => {
 
   const logoutHandler = async () => {
     try{
-      setToken(null)
+    setToken(null)
     localStorage.removeItem('token')
     navigate('/')
     }catch(err){
       console.log(err)
     }
-    
   };
+  
   return (
-    <nav className="flex justify-between sticky px-2 py-2 top-0 z-10 bg-white-dark backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200">
+    <nav className="flex justify-between sticky px-2 py-2 top-0 z-10 bg-wzhite-dark backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200">
       <div className="">
         <NavLink to={"/"} className="text-gray-dark font-bold">
           Home
