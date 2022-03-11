@@ -15,7 +15,7 @@ const Home = () => {
       ) : (
         quiz?.map((ele: Quizzes, i: number) => {
           return (
-            <div key={i} className="pt-8 -mt-4">
+            <div key={i} className="pt-8 ">
               <div className="max-w-sm mx-auto bg-gray-light rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-2">
                 <div className="md:flex">
                   <div className="md:flex-shrink-0">
