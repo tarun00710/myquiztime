@@ -22,7 +22,7 @@ const Signup = () => {
      
     e.preventDefault()
     const {name,email,password} = userInfo
-    const response = await axios.post('http://localhost:5000/user/register',{name,email,password})
+    const response = await axios.post('https://quiz-fun-app.herokuapp.com/user/register',{name,email,password})
     if(response.status === 422)
       toast.error('something went wrong')
     else{  
