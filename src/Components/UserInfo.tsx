@@ -35,8 +35,8 @@ const UserInfo = () => {
             Previously Scored : <span className="text-orange">{score}</span>
           </p>
         </div>
-        <div className="bg-white h-screen w-1/2">
-          <p className="bg-gray-darkest text-white p-2 text-center text-xl">Quiz Dashboard</p>
+        <div className="bg-white h-max w-1/2">
+          <p className="bg-gray-darkest text-white p-2 text-center text-xl ">Quiz Dashboard</p>
           <ul>
             {allUser?.map((user: any) => {
               return (
